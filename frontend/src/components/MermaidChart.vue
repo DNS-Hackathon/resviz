@@ -13,7 +13,10 @@ const renderMermaid = async () => {
   const container = document.getElementById("mermaid-container");
   if (!container) return;
   
-  mermaid.initialize({ startOnLoad: false });
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "dark",
+  });
   console.log(props.step);
   const { svg } = await mermaid.render("mermaidChart", props.charts[props.step]);
 

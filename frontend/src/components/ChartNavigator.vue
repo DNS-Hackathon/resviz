@@ -25,10 +25,14 @@ const emit = defineEmits(["next", "prev"]);
 button {
   padding: 10px;
   border: none;
-  background: #3498db;
+  background: var(--color-button);
   color: white;
   cursor: pointer;
   border-radius: 5px;
+}
+
+button:hover {
+  background: var(--color-button-hover);
 }
 
 button:disabled {
