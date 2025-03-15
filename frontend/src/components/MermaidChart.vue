@@ -17,7 +17,6 @@ const renderMermaid = async () => {
     startOnLoad: false,
     theme: "dark",
   });
-  console.log(props.step);
   const { svg } = await mermaid.render("mermaidChart", props.charts[props.step]);
 
   container.innerHTML = svg;
@@ -35,7 +34,11 @@ watch(() => props.step, renderMermaid)
 
 <style scoped>
 #mermaid-container {
-  margin: 20px 0;
   min-height: 200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 </style>
