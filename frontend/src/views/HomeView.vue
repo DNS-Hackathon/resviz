@@ -67,10 +67,33 @@ const handleSearch = async (query) => {
       qs.stringify({ domain: query }),
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );
-    charts.value = [response.data];
+
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+//    const contentType = response.headers["content-type"];
+
+//    if (contentType && contentType.includes("application/json")) {
+//    } else {
+//      charts.value = [response.mermaid];
+//    } else {
+//      console.log("None json recieved");
+//      charts.value = [response.data];
+//    };
+
+    let parsedData;
+
+    try {
+      const rawData = typeof response.data === "string" ? JSON.parse(response.data) : response.data;
+      parsedData = rawData?.mermaid ?? ["Invalid data"];
+    } catch (error) {
+      console.log("JSON Parsing error");
+      parsedData = [response.data];
+    }
+
+  charts.value = parsedData;
+
   } catch (err) {
     alert(err);
   } finally {
