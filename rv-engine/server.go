@@ -86,6 +86,13 @@ func Run() {
 
 	router.Use(static.Serve("/", static.LocalFile("html", false)))
 
+	router.POST("/resviz", func(c *gin.Context) {
+		domain := c.PostForm("domain")
+		fmt.Printf("Got domain: %s", domain)
+		outstr := dig.OSdig(domain)
+		c.Data(http.StatusOK, ContentTypeHTML, []byte(outstr))
+
+	})
 	router.POST("/dig/webclient", func(c *gin.Context) {
 		var wq dig.WebQuery
 		if err := c.ShouldBindJSON(&wq); err != nil {

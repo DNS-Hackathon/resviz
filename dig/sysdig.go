@@ -3,6 +3,9 @@ package dig
 import (
 	//"fmt"
 	"encoding/json"
+	"strconv"
+	"strings"
+
 	//"fmt"
 	"log"
 	//"os/exec"
@@ -62,23 +65,26 @@ func ToMermaid(dj []DigJson) string {
 	var out string
 
 	var lastnode string
-	for _, lv := range dj {
+	dj = dj[1:]
+	for i, lv := range dj {
 		if lastnode != "" {
 			line := Line{
 				From: lastnode,
-				To:   lv.Question.Name,
+				//To:   lv.Question.Name,
+				To: strconv.Itoa(i),
 			}
 			graph.Lines = append(graph.Lines, line)
 
 		}
 		node := Node{
-			Name: lv.Question.Name,
-			NS:   lv.Server,
+			//Name: lv.Question.Name,
+			Name: strconv.Itoa(i),
+			NS:   strings.Split(lv.Server, "#")[0],
 		}
 		graph.Nodes = append(graph.Nodes, node)
 
-		lastnode = lv.Question.Name
-
+		//lastnode = lv.Question.Name
+		lastnode = strconv.Itoa(i)
 	}
 
 	out = graph.ToCode()

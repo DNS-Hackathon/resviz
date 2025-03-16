@@ -29,144 +29,15 @@
 <section class="header">
 
     <div class="banner">
-        <h1>NerDIG</h1>
+        <h1>ResVIZ</h1>
     </div>
 
     <div class="digform">
-                <form hx-post="dig/webclient"
-                hx-target="#terminal" 
-                hx-swap="innerHTML swap:200ms" 
-                hx-headers='{"Content-Type": "application/json"}' 
-                hx-on:htmx:response-error="alert('ERROR: Request could not be completed')"
-                hx-on:htmx:send-error="alert('ERROR: Could not send request')"
-                hx-ext="json-enc">
-
-        <div class="options">
-            <span>
-                    <p class='note'>Name</p>
-                    <input type="text" id="Qname" name="Qname" required>
-            </span>
-
-            <span>
-
-                    <p class='note'>Type</p>
-                    <input type="text" id="Type" name="Qtype" list="typelist" value="A" required>
-
-                    <datalist id="typelist">
-                        <option value="A"></option>
-                        <option value="AAAA"></option>
-                        <option value="NS"></option>
-                        <option value="MX"></option>
-                        <option value="TXT"></option>
-                        <option value="SOA"></option>
-                        <option value="PTR"></option>
-                        <option value="CNAME"></option>
-                        <option value="SRV"></option>
-                        <option value="NSEC"></option>
-                        <option value="RRSIG"></option>
-                        <option value="DNSKEY"></option>
-                        <option value="CDNSKEY"></option>
-                        <option value="DS"></option>
-                        <option value="CDS"></option>
-                        <option value="NSEC3PARAM"></option>
-                        <option value="RP"></option>
-                        <option value="AXFR"></option>
-                        <option value="ANY"></option>
-                    </datalist>
-            </span>
-
-            <span>
-                    <p class='note'>Nameserver</p>
-                    <input type="text" id="Nameserver" name="Nameserver" value="1.1.1.1">
-            </span>
-
-            <button type="submit">dig</button>
+        <form method="post" action="/resviz">        
+                    <input type="text" name="domain" placeholser="domain name">
+                    <input type="submit" name="submit" value="submit">
 
 
-        </div>
-        <div class="options">
-            <details>
-                <summary>
-                <span class="infotag" hx-get="dig/info/basic-dig-options" hx-target="#infobox" hx-swap="innerHTML">Basic Options:</span>
-                </summary>
-
-                <input type="checkbox" id="RD" value="true" name="RD" checked> 
-                <span>
-                <label class="sendflag" for="RD">RD</label>
-                </span>
-
-                <input type="checkbox" id="AA" value="true" name="AA"> 
-                <span>
-                <label class="sendflag" for="AA">AA</label>
-                </span>
-
-                <input type="checkbox" id="AD" value="true" name="AD" checked> 
-                <span>
-                <label class="sendflag" for="AD">AD</label>
-                </span>
-
-                <input type="checkbox" id="CD" value="true" name="CD"> 
-                <span>
-                <label class="sendflag" for="CD">CD</label>
-                </span>
-                
-                <input type="checkbox" id="DO" value="true" name="DO"> 
-                <span>
-                <label class="sendflag" for="DO">DO</label>
-                </span>
-
-                <input type="checkbox" id="NoCrypto" value="true" name="NoCrypto"> 
-                <span>
-                <label class="sendflag" for="NoCrypto">No Crypto</label>
-                </span>
-
-                <input type="checkbox" id="Reverse" value="true" name="Reverse"> 
-                <span>
-                <label class="sendflag" for="Reverse">Reverse</label>
-                </span>
-
-                <input type="checkbox" id="Nsid" value="true" name="Nsid"> 
-                <span>
-                <label class="sendflag" for="Nsid">Nsid</label>
-                </span>
-
-                <input type="checkbox" id="ShowQuery" value="true" name="ShowQuery"> 
-                <span>
-                <label class="sendflag" for="ShowQuery">Show Query</label>
-                </span>
-
-                <select id="Transport" name="Transport" required>
-                    <option value="udp">UDP</option>
-                    <option value="tcp">TCP</option>
-                </select>
-                <select id="IpVersion" name="IpVersion" required>
-                    <option value="4">IPv4</option>
-                    <option value="6">IPv6</option>
-                </select>
-                </span>
-            </details>
-            
-        </div>
-
-        <div class="options">
-            <details>
-                <summary>
-                <span class="infotag" hx-get="dig/info/extra-dig-options" hx-target="#infobox" hx-swap="innerHTML">Extra Options:</span>
-                </summary>
-                <span>
-                    <span hx-get="dig/info/port" hx-target="#infobox" hx-swap="innerHTML">Port: </span>
-                    <input size="4" type="text" id="Port" name="Port" value="53" required>
-                </span>
-                <span>
-                    <span hx-get="dig/info/UDPsize" hx-target="#infobox" hx-swap="innerHTML">UDP size: </span>
-                    <input size="4" type="text" id="UDPsize" name="UDPsize" value="1232" required>
-                </span>
-                <span>
-                    <span class="infotag" hx-get="dig/info/tsig" hx-target="#infobox" hx-swap="innerHTML">TSIG: </span>
-                    <input type="text" id="Tsig" name="Tsig" value="" placeholder="hmac-algorithm:name:key"></span>
-                </span>
-            </details>
-        </div>
 
         </form>
     </div>
@@ -174,55 +45,10 @@
 <section class="main">
 
  
-        <input type="checkbox" id="wide-term" value="true" name="wide-term"> 
+        <input type="checkbox" id="wide-term" value="true" name="wide-term" checked> 
 	<div id="terminal">
-                <!--
-                <div class="iconBox">
-                    <label for="wide-term">
-                        <span class="expand">&gt;</span>
-                    </label>
-                </div>
-                -->
-
-                <div>
-                <h3>NAME</h3>
-                <p>
-                    NerDIG - No Experience Required DIG.
-                </p>
-                <h3>DESCRIPTION</h3>
-                <p>
-                    DIG is a flexible tool for interrogating DNS name servers. It performs DNS lookups and 
-                    displays the answers that are returned from the name server(s) that were queried. 
-                </p>
-                <p>
-                    According to the manual pages for DIG, "Most DNS administrators use dig to troubleshoot
-                    DNS problems because of its flexibility, ease of use and clarity of output". 
-                </p>
-                <p>
-                    While user friendly, it can be a bit picky about who it considers a friend. NerDIG is here to help with that,
-                    by letting you 
-                    <span class="info attention" hx-get="dig/info/faq" hx-target="#infobox" hx-swap="innerHTML">
-                            >> click on almost anything to get an explanation <<
-                    </span> of what it is and what it does. 
-                </p>
-                <h3>SIMPLE USAGE</h3>
-                <p>
-                    Enter the domain name you wish to query in the appropriatly named input field and press the button.
-                </p>
-                <p>
-                    There are a number of options that can be toggeled, selected, or changed. They largely correspond to the 
-                    options available in the regular DIG client. 
-                </p>
-                </div>
 
 	</div>
- 	<div class="infowrapper"> 
-            <h2>Info Section</h2>
-            <div id="digcli"></div>
- 	    <div id="infobox"> 
-                    Info about flags, sections and other stuff
- 	    </div>
- 	</div>
 
 </section>
 <section class="footer fullwidth"> 
