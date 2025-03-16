@@ -10,7 +10,7 @@ import Modal from '@/components/Modal.vue'
 const step = ref(0);
 const charts = ref([]);
 const isLoading = ref(null);
-const showModal = ref(true);
+const showModal = ref(false);
 const modalContent = ref("This is some fun information about the box you clicked on!");
 
 const fakeData = [
