@@ -7,8 +7,9 @@ const props = defineProps({
   charts: Array,
 });
 
-const handleMermaidClick = (id) => {
-  alert(`Node Clicked: ${id}`);
+const handleMermaidClick = (server_name) => {
+  emit("openModal", `You are now viewing information regarding ${server_name}`);
+//  alert(`Node Clicked: ${id}`);
 };
 
 const renderMermaid = async () => {
@@ -57,6 +58,8 @@ const cleanString = (input) => {
 onMounted(renderMermaid);
 watch(() => props.step, renderMermaid);
 watch(() => props.charts, renderMermaid);
+
+const emit = defineEmits(["openModal"]);
 </script>
 
 <template>

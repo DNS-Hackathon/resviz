@@ -5,10 +5,13 @@ import qs from 'qs';
 import MermaidChart from '@/components/MermaidChart.vue'
 import ChartNavigator from '@/components/ChartNavigator.vue'
 import SearchBar from '@/components/SearchBar.vue'
+import Modal from '@/components/Modal.vue'
 
 const step = ref(0);
 const charts = ref([]);
 const isLoading = ref(null);
+const showModal = ref(true);
+const modalContent = ref("This is some fun information about the box you clicked on!");
 
 const fakeData = [
 `
@@ -41,6 +44,15 @@ const nextStep = () => {
 
 const prevStep = () => {
   if (step.value > 0) step.value--;
+};
+
+const openModal = (content) => {
+  modalContent.value = content;
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 
 const handleSearch = async (query) => {
@@ -94,7 +106,11 @@ onUnmounted(() => {
     
     <div v-if="charts.length > 0">
       <ChartNavigator :step="step" :maxSteps="charts.length" @next="nextStep" @prev="prevStep" />
-      <MermaidChart :step="step" :charts="charts"/>
+      <MermaidChart :step="step" :charts="charts" @openModal="openModal"/>
+      <Modal :isOpen="showModal" @close="closeModal">
+        <h2>Deep dive into the world of DNS!</h2>
+	<p>{{ modalContent }}</p>
+      </Modal>
     </div>
   </main>
 </template>
