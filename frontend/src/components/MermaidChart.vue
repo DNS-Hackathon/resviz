@@ -52,6 +52,7 @@ const renderMermaid = async () => {
 
 onMounted(renderMermaid);
 watch(() => props.step, renderMermaid);
+watch(() => props.charts, renderMermaid);
 </script>
 
 <template>
