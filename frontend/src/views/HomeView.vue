@@ -7,11 +7,36 @@ import ChartNavigator from '@/components/ChartNavigator.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
 const step = ref(0);
+const charts = ref([]);
+const isLoading = ref(null);
 
-const charts = ref(null);
+const fakeData = [
+`
+graph TD;
+i.root-servers.net@{ shape: rect, label: "i.root-servers.net"}
+`,
+`
+graph TD;
+i.root-servers.net@{ shape: rect, label: "i.root-servers.net"}
+l.gtld-servers.net@{ shape: rect, label: "l.gtld-servers.net"}
+
+
+i.root-servers.net --> l.gtld-servers.net
+`,
+`
+graph TD;
+i.root-servers.net@{ shape: rect, label: "i.root-servers.net"}
+l.gtld-servers.net@{ shape: rect, label: "l.gtld-servers.net"}
+ns3.afrinic.net@{ shape: rect, label: "ns3.afrinic.net"}
+
+
+i.root-servers.net --> l.gtld-servers.net
+l.gtld-servers.net --> ns3.afrinic.net
+`,
+];
 
 const nextStep = () => {
-  if (step.value < charts.length -1) step.value++;
+  if (step.value < charts.value.length -1) step.value++;
 };
 
 const prevStep = () => {
@@ -20,20 +45,24 @@ const prevStep = () => {
 
 const handleSearch = async (query) => {
   try {
-
+    isLoading.value = true;
+    if (query === "ripe") {
+      charts.value = fakeData;
+      return
+    }
     const response = await axios.post(
-      'http://localhost:1999/resviz',
+      'http://nerdig.examples.nu/resviz',
       qs.stringify({ domain: query }),
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );
-
-    console.log(response.data);
     charts.value = [response.data];
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
   } catch (err) {
     alert(err);
+  } finally {
+    isLoading.value = false;
   }
 };
 
@@ -57,9 +86,39 @@ onUnmounted(() => {
 <template>
   <main>
     <SearchBar @search="handleSearch" />
-    <div v-if="charts">
+    
+    <div v-if="isLoading" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading resviz data...</p>
+    </div>
+    
+    <div v-if="charts.length > 0">
       <ChartNavigator :step="step" :maxSteps="charts.length" @next="nextStep" @prev="prevStep" />
       <MermaidChart :step="step" :charts="charts"/>
     </div>
   </main>
 </template>
+
+<style scoped>
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh; /* Center the spinner vertically */
+}
+
+.spinner {
+  border: 4px solid #f3f3f3; /* Light background */
+  border-top: 4px solid #3498db; /* Blue color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>

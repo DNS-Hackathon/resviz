@@ -44,11 +44,15 @@ const renderMermaid = async () => {
     nodes.forEach((node) => {
       const nodeId = node.getAttribute("id");
       node.addEventListener("click", () => {
-        handleMermaidClick(nodeId);
+        handleMermaidClick(cleanString(nodeId));
       });
     });
   }, 0);
 };
+
+const cleanString = (input) => {
+  return input.replace(/^flowchart-/, '').replace(/-\d+$/, '');
+}
 
 onMounted(renderMermaid);
 watch(() => props.step, renderMermaid);
