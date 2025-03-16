@@ -9,6 +9,7 @@ const step = ref(0);
 const charts = [
   `graph TD;
 a.root-servers.net@{ shape: rect, label: "a.root-servers.net"}
+click a.root-servers.net #
   `,
   `graph TD;
 a.root-servers.net@{ shape: rect, label: "a.root-servers.net"}
@@ -47,9 +48,26 @@ c.gtld-servers.net --> ns2.dns-oarc.net
 ns2.dns-oarc.net --> ns.dev.dns-oarc.net
 ns.dev.dns-oarc.net --> ns.cmdns.dev.dns-oarc.net
   `,
+  `graph TD;
+a.root-servers.net@{ shape: rect, label: "a.root-servers.net"}
+c.gtld-servers.net@{ shape: rect, label: "c.gtld-servers.net"}
+ns2.dns-oarc.net@{ shape: rect, label: "ns2.dns-oarc.net"}
+ns.dev.dns-oarc.net@{ shape: rect, label: "ns.dev.dns-oarc.net"}
+ns.cmdns.dev.dns-oarc.net@{ shape: rect, label: "ns.cmdns.dev.dns-oarc.net"}
+domain@{ shape: rect, label: "dns-oarc.net"}
 
+
+a.root-servers.net --> c.gtld-servers.net
+c.gtld-servers.net --> ns2.dns-oarc.net
+ns2.dns-oarc.net --> ns.dev.dns-oarc.net
+ns.dev.dns-oarc.net --> ns.cmdns.dev.dns-oarc.net
+ns.cmdns.dev.dns-oarc.net --> domain
+  `,
 ];
 
+const callback = () => {
+  console.log("testing")
+}
 const nextStep = () => {
   if (step.value < charts.length -1) step.value++;
 };
