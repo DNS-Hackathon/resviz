@@ -1,121 +1,107 @@
 package dig
 
 import (
-	//"fmt"
 	"encoding/json"
-	"strconv"
+	"regexp"
 	"strings"
 
-	//"fmt"
-	"log"
-	//"os/exec"
-	"os"
+	"fmt"
+	"os/exec"
 )
 
-func OSdig(domain string) string {
-	//path := "/Users/tolvmannen/dig.sh "
-	var out string
-	var jblob []DigJson
-	//jsonstring, err := exec.Command("/bin/bash", path, domain).Output()
-	jsonstring, err := os.ReadFile("./mockup/www.iis-mock.json")
-	//jsonstring, err := exec.Command(path, domain).Output()
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = json.Unmarshal([]byte(jsonstring), &jblob)
-
-	out = ToMermaid(jblob)
-
-	return out
-	//return string(out)
+type DNSRecord struct {
+	ID       int      `json:"id"`
+	Opcode   string   `json:"opcode"`
+	Status   string   `json:"status"`
+	Flags    []string `json:"flags"`
+	Question struct {
+		Name  string `json:"name"`
+		Class string `json:"class"`
+		Type  string `json:"type"`
+	} `json:"question"`
+	Answer     []DNSAnswer `json:"answer"`
+	Authority  []DNSAnswer `json:"authority"`
+	Additional []DNSAnswer `json:"additional"`
+	Server     string      `json:"server"`
 }
 
-type RR struct {
+type DNSAnswer struct {
 	Name  string `json:"name"`
 	Class string `json:"class"`
 	Type  string `json:"type"`
-	Ttl   string `json:"ttl"`
+	TTL   int    `json:"ttl"`
 	Data  string `json:"data"`
 }
 
-type DigJson struct {
-	Id             uint32   `json:"id"`
-	Opcode         string   `json:"opcode"`
-	Status         string   `json:"status"`
-	Flags          []string `json:"flags"`
-	Query_num      uint32   `json:"query_num"`
-	Answer_num     uint32   `json:"answer_num"`
-	Authority_num  uint32   `json:"authority_num"`
-	Additional_num uint32   `json:"additional_num"`
-	// Opt_pseudusection
-	Question   RR     `json:"question"`
-	Answer     []RR   `json:"answer"`
-	Authority  []RR   `json:"authority"`
-	Additional []RR   `json:"additional"`
-	Query_time uint32 `json:"query_time"`
-	Server     string `json:"server"`
-	When       string `json:"when"`
-	Rcvd       uint32 `json:"rcvd"`
-	When_epoch uint32 `json:"when_epoch"`
+type DNSAddress struct {
+	IP       string
+	Port     string
+	Hostname string
+	Protocol string
 }
 
-func ToMermaid(dj []DigJson) string {
+func ParseServer(input string) (*DNSAddress, error) {
+	re := regexp.MustCompile(`(?P<ip>[0-9a-fA-F:.]+)#(?P<port>\d+)\((?P<hostname>[^)]+)\) \((?P<protocol>[^)]+)\)`)
+	match := re.FindStringSubmatch(input)
 
-	var graph Graph
-	var out string
+	if match == nil {
+		return nil, fmt.Errorf("invalid input format")
+	}
 
-	var lastnode string
-	dj = dj[1:]
-	for i, lv := range dj {
-		if lastnode != "" {
-			line := Line{
-				From: lastnode,
-				//To:   lv.Question.Name,
-				To: strconv.Itoa(i),
-			}
-			graph.Lines = append(graph.Lines, line)
+	result := &DNSAddress{
+		IP:       match[1],
+		Port:     match[2],
+		Hostname: match[3],
+		Protocol: match[4],
+	}
 
+	return result, nil
+}
+
+var hitServers []string
+
+func OSdig(domain string) string {
+	script := "./dig/dig.sh"
+	jsonData, err := exec.Command("/bin/sh", script, domain).Output()
+	if err != nil {
+		return fmt.Sprintf("Error running dig script:%s\n", err)
+	}
+
+	var dnsRecords []DNSRecord
+	err = json.Unmarshal([]byte(jsonData), &dnsRecords)
+	if err != nil {
+		return fmt.Sprintf("Error parsing JSON:%s\n", err)
+	}
+
+	var mermaidBuilder strings.Builder
+	mermaidBuilder.WriteString("graph TD;\n")
+
+	for _, record := range dnsRecords {
+		server := fmt.Sprintf("%s\n", record.Server)
+
+		parsed, err := ParseServer(server)
+		if err != nil {
+			return fmt.Sprintf("Error:", err)
 		}
-		node := Node{
-			//Name: lv.Question.Name,
-			Name: strconv.Itoa(i),
-			NS:   strings.Split(lv.Server, "#")[0],
-		}
-		graph.Nodes = append(graph.Nodes, node)
 
-		//lastnode = lv.Question.Name
-		lastnode = strconv.Itoa(i)
+		hitServers = append(hitServers, parsed.Hostname)
+		//mermaidBuilder.WriteString(parsed.Hostname)
+		//mermaidBuilder.WriteString("\n")
 	}
 
-	out = graph.ToCode()
-
-	return out
-
-}
-
-type Node struct {
-	Name string
-	NS   string
-}
-
-type Line struct {
-	From string
-	To   string
-}
-
-type Graph struct {
-	Nodes []Node
-	Lines []Line
-}
-
-func (g *Graph) ToCode() string {
-	var out string
-	for _, node := range g.Nodes {
-		out += node.Name + "@{shape: rect, label \"" + node.NS + "\"}"
-	}
-	for _, line := range g.Lines {
-		out += line.From + " --> " + line.To
+	hitServers = hitServers[1:]
+	for _, server := range hitServers {
+		mermaidBuilder.WriteString(server + "@{ shape: rect, label: \"" + server + "\"}")
+		mermaidBuilder.WriteString("\n")
 	}
 
-	return out
+	mermaidBuilder.WriteString("\n\n")
+
+	for i := 0; i < len(hitServers)-1; i++ {
+		mermaidBuilder.WriteString(fmt.Sprintf("%s --> %s\n", hitServers[i], hitServers[i+1]))
+	}
+
+	// return the mermaid string object
+	return fmt.Sprintf(mermaidBuilder.String())
+	// return out
 }
