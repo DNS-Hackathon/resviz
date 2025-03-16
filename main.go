@@ -73,7 +73,7 @@ func main() {
 	}
 
 	var mermaidBuilder strings.Builder
-	mermaidBuilder.WriteString("graph TD;\n")
+	mermaidBuilder.WriteString("{\"mermaid\":\"[")
 
 	for _, record := range dnsRecords {
 		server := fmt.Sprintf("%s\n", record.Server)
@@ -85,21 +85,31 @@ func main() {
 		}
 
 		hitServers = append(hitServers, parsed.Hostname)
-		//mermaidBuilder.WriteString(parsed.Hostname)
-		//mermaidBuilder.WriteString("\n")
 	}
 
 	hitServers = hitServers[1:]
-	for _, server := range hitServers {
-		mermaidBuilder.WriteString(server + "@{ shape: rect, label: \"" + server + "\"}")
-		mermaidBuilder.WriteString("\n")
-	}
+	var mermaidoutnode string
+	var mermaidoutconnection string
 
 	mermaidBuilder.WriteString("\n\n")
 
+	mermaidBuilder.WriteString("'graph TD;\n")
+	mermaidBuilder.WriteString(fmt.Sprintf(hitServers[0] + "@{ shape: rect, label: \"" + hitServers[0] + "\"}" + "\n"))
+	mermaidBuilder.WriteString(fmt.Sprintf("%s\n", hitServers[0]))
+	mermaidBuilder.WriteString("\n\n\n\n")
 	for i := 0; i < len(hitServers)-1; i++ {
-		mermaidBuilder.WriteString(fmt.Sprintf("%s --> %s\n", hitServers[i], hitServers[i+1]))
+
+		mermaidBuilder.WriteString("'graph TD;\n")
+		mermaidoutnode += fmt.Sprintf(hitServers[i] + "@{ shape: rect, label: \"" + hitServers[i] + "\"};" + "\n")
+		mermaidoutconnection += (fmt.Sprintf("%s --> %s;\n", hitServers[i], hitServers[i+1]))
+		//		mermaidBuilder.WriteString(fmt.Sprintf(hitServers[i] + "@{ shape: rect, label: \"" + hitServers[i] + "\"}" + "\n"))
+		//mermaidBuilder.WriteString(fmt.Sprintf("%s --> %s\n", hitServers[i], hitServers[i+1]))
+
+		mermaidBuilder.WriteString(mermaidoutnode)
+		mermaidBuilder.WriteString(mermaidoutconnection)
+		mermaidBuilder.WriteString("\n\n\n\n")
 	}
 
+	mermaidBuilder.WriteString("]}\n")
 	fmt.Println(mermaidBuilder.String())
 }
