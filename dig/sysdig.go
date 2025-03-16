@@ -81,7 +81,7 @@ func OSdig(domain string) string {
 
 		parsed, err := ParseServer(server)
 		if err != nil {
-			return fmt.Sprintf("Error:", err)
+			return fmt.Sprintf("Error: %s", err)
 		}
 
 		hitServers = append(hitServers, parsed.Hostname)
@@ -102,6 +102,6 @@ func OSdig(domain string) string {
 	}
 
 	// return the mermaid string object
-	return fmt.Sprintf(mermaidBuilder.String())
+	return fmt.Sprintf("%s", mermaidBuilder.String())
 	// return out
 }
