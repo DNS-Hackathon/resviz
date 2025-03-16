@@ -1,0 +1,24 @@
+LogLevel: 0         # 0 = no logging, 1 = error, 2 = info, 3+ = debug
+TLS: none 
+Address: ""
+Port: "1999"
+Hosts: 
+    - localhost
+AutoTlsCertdir: # use with TLS: auto
+LocalCertfile: # use with TLS: local
+LocalKeyfile:  # use with TLS: local
+AllowOrigins:
+    - "*"
+AllowMethods:
+    - GET
+    - POST
+    - OPTIONS
+AllowHeaders:
+    - Origin
+    - hx-target
+    - hx-current-url
+    - hx-request
+    - content-type
+ExposeHeaders:
+    - Content-Length
+AllowCredentials: true

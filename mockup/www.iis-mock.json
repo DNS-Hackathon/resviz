@@ -1,0 +1,528 @@
+[
+  {
+    "id": 40484,
+    "opcode": "QUERY",
+    "status": "NOERROR",
+    "flags": [
+      "qr",
+      "ra",
+      "ad"
+    ],
+    "query_num": 1,
+    "answer_num": 14,
+    "authority_num": 0,
+    "additional_num": 1,
+    "opt_pseudosection": {
+      "edns": {
+        "version": 0,
+        "flags": [
+          "do"
+        ],
+        "udp": 1232
+      }
+    },
+    "question": {
+      "name": ".",
+      "class": "IN",
+      "type": "NS"
+    },
+    "answer": [
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "a.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "b.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "c.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "d.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "e.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "f.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "g.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "h.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "i.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "j.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "k.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "l.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 510098,
+        "data": "m.root-servers.net."
+      },
+      {
+        "name": ".",
+        "class": "IN",
+        "type": "RRSIG",
+        "ttl": 510098,
+        "data": "NS 8 0 518400 20250328050000 20250315040000 26470 . LeThk0/ZYCwtFlgtTuCa0bcH/TGA9zuxEac0VmPjoA64K/jZePayyIva Yljy0UdsKuHffVuAGatJGjt9vYGzgtG7cckl4PJ+8OXpFsutua4tXSXe nBH52M7bbb3aIcx0A2b3u656/mtZemNdCNn66/f0jlfnsWby2P7KaO6C oarbiM60Y7XuYtYPngm8qEqunaPZettJ8D33Zt9pa7pqmzWGctvi/Q6h /BX1b4BabcICRrlsKM9SPV2PR4rHqJDFDqZVG+RFsNgImNstKNUT0jDV n5sx+KhTQDzAjqe6Eu3lzJ6Pps5KG9Wh/owBEeg1ZlrqItvj5PZ4beVH Qs992g=="
+      }
+    ],
+    "query_time": 6,
+    "server": "1.1.1.1#53(1.1.1.1)",
+    "when": "Sat Mar 15 17:37:41 CET 2025",
+    "rcvd": 525,
+    "when_epoch": 1742056661,
+    "when_epoch_utc": null
+  },
+  {
+    "id": 60352,
+    "opcode": "QUERY",
+    "status": "NOERROR",
+    "flags": [
+      "qr"
+    ],
+    "query_num": 1,
+    "answer_num": 0,
+    "authority_num": 12,
+    "additional_num": 21,
+    "opt_pseudosection": {
+      "edns": {
+        "version": 0,
+        "flags": [
+          "do"
+        ],
+        "udp": 1232
+      }
+    },
+    "question": {
+      "name": "www.iis.se.",
+      "class": "IN",
+      "type": "SOA"
+    },
+    "authority": [
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "a.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "b.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "c.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "f.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "g.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "i.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "m.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "x.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "y.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 172800,
+        "data": "z.ns.se."
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "DS",
+        "ttl": 86400,
+        "data": "59407 8 2 67A8E06FCEFDD9397F77F26C41ADE4EC142F299BCFA1827F0EF8FD87 F2F63022"
+      },
+      {
+        "name": "se.",
+        "class": "IN",
+        "type": "RRSIG",
+        "ttl": 86400,
+        "data": "DS 8 1 86400 20250328050000 20250315040000 26470 . keUu+E5aG7pY14sGDujVgvPqqIKy71h4ELeDhKWurtdXw+OpUeiOD3xk 8PYfWsDWkDb7SORxpBLjLsE+FCdyQVl9d4IZwA0sRJJDG5z4dGWqK4tf mpPGtKrLnHyMcU6aHh3RFxaI4V9SbIohkxbwhvJhDvH4GVDQHBzW6o/j RYISrinSiRU50T7jinJiKsW2y1prBD2g9cezkt/7dVdfjJAEBS5bbI2p 6AtQrjXsfHQVm6WrU+jSKy3FBpcsG6f4uQybCOkrKURLEK34p+2D32mX eOwf4IqiSzcODLEak5y6vAGAVRXRfbGaDxzGWYkmtJQQpJyr0N4YTC9d bMFbvw=="
+      }
+    ],
+    "additional": [
+      {
+        "name": "a.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "192.36.144.107"
+      },
+      {
+        "name": "b.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "192.36.133.107"
+      },
+      {
+        "name": "c.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "192.36.135.107"
+      },
+      {
+        "name": "f.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "192.71.53.53"
+      },
+      {
+        "name": "g.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "130.239.5.114"
+      },
+      {
+        "name": "i.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "194.146.106.22"
+      },
+      {
+        "name": "m.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "194.0.11.112"
+      },
+      {
+        "name": "x.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "213.108.25.4"
+      },
+      {
+        "name": "y.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "185.159.197.150"
+      },
+      {
+        "name": "z.ns.se.",
+        "class": "IN",
+        "type": "A",
+        "ttl": 172800,
+        "data": "185.159.198.150"
+      },
+      {
+        "name": "a.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2a01:3f0:0:301::53"
+      },
+      {
+        "name": "b.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2001:67c:254c:301::53"
+      },
+      {
+        "name": "c.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2001:67c:2554:301::53"
+      },
+      {
+        "name": "f.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2a01:3f0:0:305::53"
+      },
+      {
+        "name": "g.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2001:6b0:e:3::1"
+      },
+      {
+        "name": "i.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2001:67c:1010:5::53"
+      },
+      {
+        "name": "m.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2001:678:e:112::53"
+      },
+      {
+        "name": "x.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2001:67c:124c:e000::4"
+      },
+      {
+        "name": "y.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2620:10a:80aa::150"
+      },
+      {
+        "name": "z.ns.se.",
+        "class": "IN",
+        "type": "AAAA",
+        "ttl": 172800,
+        "data": "2620:10a:80ab::150"
+      }
+    ],
+    "query_time": 28,
+    "server": "2001:503:c27::2:30#53(2001:503:c27::2:30)",
+    "when": "Sat Mar 15 17:37:41 CET 2025",
+    "rcvd": 977,
+    "when_epoch": 1742056661,
+    "when_epoch_utc": null
+  },
+  {
+    "id": 61830,
+    "opcode": "QUERY",
+    "status": "NOERROR",
+    "flags": [
+      "qr"
+    ],
+    "query_num": 1,
+    "answer_num": 0,
+    "authority_num": 5,
+    "additional_num": 1,
+    "opt_pseudosection": {
+      "edns": {
+        "version": 0,
+        "flags": [
+          "do"
+        ],
+        "udp": 1232
+      }
+    },
+    "question": {
+      "name": "www.iis.se.",
+      "class": "IN",
+      "type": "SOA"
+    },
+    "authority": [
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 86400,
+        "data": "nsu.dnsnode.net."
+      },
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 86400,
+        "data": "nsp.dnsnode.net."
+      },
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "NS",
+        "ttl": 86400,
+        "data": "nsa.dnsnode.net."
+      },
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "DS",
+        "ttl": 3600,
+        "data": "51298 13 2 60A48DB6C1F4B993E3D7C0869C0C535A70C9A6D1899DE86563D485B5 15EE1918"
+      },
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "RRSIG",
+        "ttl": 3600,
+        "data": "DS 8 2 3600 20250329091731 20250315074731 8961 se. SA2lgH+SdURCJZEw71uS4B5h+UmLgdKJmFpwxnV0MiXRIpuJ0pDj1nmM 60ttt7QJY39789Ay5dSHZMBjaSU3Ku9s26LyFf++PLc8QsFoU14HWw5P IJvMmum3gAxAwRVGQeX/zED76bDjgFkUlkooFZPLXwb8ITRh1ZI6d30S S/0IAXCx3C97IB/r7kLmB+9Rs33dwi6tkLZB1hpYtlbP6MGG44lhG5jF aeQTWqPivWWdV3QUVDEUMz6XgCiVdRjqWy57CCvA46fWyyuIXt1DhVuj 70k9L2P4WDxdP46AP9CsQJVhJ+hjDZg2fB5ZXEHIGKS/tHXVOJTRkjMg wezlTQ=="
+      }
+    ],
+    "query_time": 14,
+    "server": "2001:67c:254c:301::53#53(2001:67c:254c:301::53)",
+    "when": "Sat Mar 15 17:37:41 CET 2025",
+    "rcvd": 442,
+    "when_epoch": 1742056661,
+    "when_epoch_utc": null
+  },
+  {
+    "id": 1351,
+    "opcode": "QUERY",
+    "status": "NOERROR",
+    "flags": [
+      "qr",
+      "aa"
+    ],
+    "query_num": 1,
+    "answer_num": 0,
+    "authority_num": 4,
+    "additional_num": 1,
+    "opt_pseudosection": {
+      "edns": {
+        "version": 0,
+        "flags": [
+          "do"
+        ],
+        "udp": 4096
+      }
+    },
+    "question": {
+      "name": "www.iis.se.",
+      "class": "IN",
+      "type": "SOA"
+    },
+    "authority": [
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "SOA",
+        "ttl": 600,
+        "data": "ns.nic.se. hostmaster.nic.se. 1742024392 14400 3600 2592000 600"
+      },
+      {
+        "name": "iis.se.",
+        "class": "IN",
+        "type": "RRSIG",
+        "ttl": 600,
+        "data": "SOA 13 2 3600 20250419073952 20250315060952 35910 iis.se. +g7Fm9oO6Zz0uXYVNz5grrBsmcMkE9OdG9dFBcpN+fSOyrX0PHPAmrui 3x8oo5eMSVl39gPDFYznk6DwRDKd6g=="
+      },
+      {
+        "name": "www.iis.se.",
+        "class": "IN",
+        "type": "NSEC",
+        "ttl": 600,
+        "data": "x-stage.iis.se. A AAAA RRSIG NSEC"
+      },
+      {
+        "name": "www.iis.se.",
+        "class": "IN",
+        "type": "RRSIG",
+        "ttl": 600,
+        "data": "NSEC 13 3 600 20250418131047 20250314114047 35910 iis.se. 7U39v/iFEY+cAFfHmJQEI21AcDPf/L8KBKIl0miacnb5N6AKoXtzRuKt +VvWAuoFYY6lyJWX+9hNxd7PjRzzEg=="
+      }
+    ],
+    "query_time": 4,
+    "server": "2a01:3f1:3032::53#53(2a01:3f1:3032::53)",
+    "when": "Sat Mar 15 17:37:41 CET 2025",
+    "rcvd": 333,
+    "when_epoch": 1742056661,
+    "when_epoch_utc": null
+  }
+]

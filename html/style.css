@@ -1,0 +1,491 @@
+
+:root {
+	--bg-color: rgb(255, 255, 255, 1);
+	--text-color: rgb(40, 40, 40, 1);
+	--section-color: rgb(255, 255, 255, 1);
+	--primary-color: rgb(73, 166, 113, 1);
+	--secondary-color: rgb(255, 140, 0, 1);
+	--secondary-color-hover: rgb(255, 140, 0, .6);
+
+	--terminal-bg-color: rgb(0, 0, 0, 1);
+	--terminal-text-color: rgb(204, 204, 204, 1);
+
+	--banner-text-color: rgb(255, 140, 0, 1); 
+	--banner-bg-color: rgb(255, 255, 255, 1);
+	
+	--unset-color: rgb(100, 100, 100, 1);
+	--flag-unset-color: rgb(180, 180, 180, 1);
+	/*--set-color: rgb(0, 0, 0, 1); */
+	--set-color: rgb(204, 204, 204, 1);
+
+	--note-color: rgb(30, 30, 30, 1);
+
+	--hover-color: rgb(255, 255, 255, 1);
+
+	--footer-height: 50px;
+
+}
+
+*{
+	margin: 0;
+	padding: 0;
+} 
+
+html {
+	font-size: clamp(14px, 1rem, 2rem);
+	font-family: Courier New,Courier,monospace;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+        justify-content: start;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-size: 1rem;
+	height: 100vh;
+}
+
+body:has(#hide_unset:checked) * .unset {
+	display: none;
+} 
+
+section {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	gap: 1rem;
+	width: clamp(450px, 92vw, 1500px);
+	flex-grow: 1;
+	background-color: var(--section-color);	
+	position: relative;
+	z-index: 1;
+}
+
+h1 {
+	font-size: 5rem;
+	margin: 1rem;
+}
+
+h2,
+h3 {
+	margin: 1rem;
+}
+
+.info {
+}
+.info:hover {
+	font-weight: bold;
+	cursor: pointer;
+	color: var(--hover-color)
+	/*cursor: help;*/
+}
+
+.set {
+	color: var(--set-color);
+}
+
+.unset {
+	color: var(--unset-color);
+} 
+
+.header {
+	flex-wrap: wrap;
+	flex-grow: 0;
+	background-color: var(--bg-color);
+	font-weight: bold;
+}
+
+.banner {
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	padding: 1.5rem;
+	height: 5rem;
+	width: 100%;
+	color: var(--banner-text-color);
+	background-color: var(--banner-bg-color);
+}
+
+.fullwidth {
+	width: 100vw;
+}
+
+label {
+	margin: 0.2rem;
+	cursor: pointer;
+}
+
+.sendflag { 
+	text-decoration: line-through;
+	color: var(--flag-unset-color);
+	font-size: 1.2rem;
+}
+
+select,
+input {
+	font-size: 1rem;
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=checkbox]:checked + span label {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+input:focus{
+	outline: none;
+}
+
+.digform {
+	display: flex;
+	flex-direction: row;
+	padding: 0.1rem;
+}
+
+.digform * input,
+.digform * select {
+	margin-right: 1rem;
+	border-style: none none solid none;
+	border-width: 4px;
+	border-color: var(--primary-color);
+	border-radius: 4px;
+	background-color: var(--bg-color);
+	padding: 2px;
+}
+
+.digform * button {
+	cursor: pointer;
+	background-color: var(--secondary-color);
+    	color: var(--text-color);
+	font-weight: bold;
+	font-size: 1.05rem;
+	border-radius: 15px;
+	border-width: 0;
+	width: 8rem;
+
+}
+
+.digform * button:hover {
+	background-color: var(--secondary-color-hover);
+}
+
+.options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	padding: 0.2rem;
+	margin-bottom: 0.2rem;
+}
+
+details {
+	cursor: pointer;
+}
+
+.note {
+	font-size: 1rem;
+	color: var(--note-color);
+}
+
+.main {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	flex-grow: 1;
+	position: relative;
+	padding-bottom: calc(var(--footer-height) + 50px);
+}
+
+.footer {
+	display: flex;
+	flex-direction: row;
+	padding: 1rem;
+	background-color: var(--primary-color);
+	flex-grow: 0;
+	justify-content: space-between;
+	-moz-box-pack: space-between;
+	position: fixed;
+	bottom: 0;
+	height: var(--footer-height);
+	box-shadow: 0 -3px 5px rgb(0 ,0, 0, .8);
+} 
+
+.footer > div:first-child {
+	margin-left: 3rem;
+	margin-left: 5%;
+}
+.footer > div:last-child {
+	margin-right: 3rem;
+	margin-right: 5%;
+}
+
+.classroom > div {
+	position: relative;
+	float: left;
+}
+
+.classroomIcon {
+	fill: none;
+	stroke: black;
+	stroke-width: 2px;
+	height: 2.2rem;
+	width: 2.2rem;
+	margin-top: .3rem;
+}
+
+.classroomIcon:hover {
+	stroke: white;
+}
+body:has(#hide_unset:checked) .classroomIcon {
+	stroke: white;
+}
+	
+body:has(#hide_unset:checked) .classroomIcon:hover {
+	stroke: black;
+}
+
+.classroomText {
+	padding-left: .3rem;
+	font-size: .9rem;
+	color: white; 
+	width: 22rem;
+}
+
+.githubIcon {
+	fill: white;
+	stroke: none;
+	stroke-width: 2px;
+	height: 2.2rem;
+	width: 2.2rem;
+	margin-top: .3rem;
+}
+
+.githubIcon:hover {
+	fill: black;
+}
+
+
+.infotag {
+	margin-right: 0.8rem; 
+	margin-bottom: 2px;
+}
+
+.infotag:hover {
+	font-weight: bold;
+	cursor: pointer;
+	color: var(--secondary-color);
+}
+
+.infowrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	/*justify-content: center;*/
+	align-items: center;
+	width: clamp(320px, 40%, 600px);
+    	background-color: var(--primary-color);
+	border-radius: 15px;
+
+}
+
+.digcli-box, 
+#infobox { 
+	display: flex;
+	flex-direction: column;
+	/*
+	width: clamp(320px, 30%, 600px);
+	padding: 10px;
+	*/ 
+	width: calc(100% - 6rem);
+	margin-top: 0.1rem;
+	margin-right: 2rem;
+	margin-bottom: 2rem;
+	margin-left: 2rem;
+	padding: 1.3rem;
+    	color: var(--text-color);
+    	background-color: var(--bg-color);
+	border-radius: 40px 0 40px 0;
+}
+
+
+/* ugly solution...*/
+.sepcolon {
+	margin-left: -0.4rem;
+}
+
+#cpcmd {
+	position: relative;
+	padding: 1rem;
+	padding-right: 2.2rem;
+    	color: var(--terminal-text-color);
+    	background-color: var(--terminal-bg-color);
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#cpcmd:hover {
+	color: var(--hover-color);
+}
+
+.copyIcon {
+	fill: none;
+	stroke: var(--secondary-color);
+	stroke-width: 2px;
+	height: 1.4rem;
+	width: 1.4rem;
+	cursor: pointer;
+}
+
+.copyIcon:hover {
+	stroke: white;
+}
+
+
+#terminal {
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	flex-grow: 1;
+	padding: 1rem;
+	font-size: 0.9rem;
+    	font-family: monospace, monospace;
+    	color: var(--terminal-text-color);
+    	background-color: var(--terminal-bg-color);
+	border-radius: 15px;
+	width: clamp(300px, 60%, 800px);
+	position: relative;
+}
+
+#terminal div p, 
+#terminal div h3 {
+	width: clamp(300px, 70%, 800px);
+	padding: 0.3rem;
+}
+
+#terminal div p {
+	margin-left: 5rem;
+	overflow-wrap: break-word;
+}
+
+#terminal .spacer {
+	height: 1rem;
+}
+
+#terminal * td {
+	overflow-wrap: break-word;
+	vertical-align: top;
+	padding: 0 0.3rem;
+}
+
+
+#terminal * .rdata {
+	word-break: break-all;
+}
+
+.main:has(#wide-term:checked) {
+	flex-wrap: wrap;
+
+}
+.main:has(#wide-term:checked) > div {
+	width: 100%;
+}
+
+.iconBox {
+	position: absolute;
+	top: 0.8rem;
+	right: 0.8rem;
+	margin-left: 2rem;
+}
+
+.expandIcon {
+	height: 1.4rem;
+	width: 1.4rem;
+	stroke: #ccc;
+	stroke-width: 2px;
+	transform: rotate(90deg);
+}
+
+.expandIcon:hover {
+	stroke: #fff;
+}
+
+.main:has(#wide-term:checked) .expandIcon {
+	transform: rotate(-90deg);
+}
+
+.hidden {
+	overflow: hidden;
+	height: 0px;
+	width: 0px;
+
+}
+.off-screen {
+}
+
+.wide-term-toggle:hover {
+	color: white;
+}
+
+@media (width < 1020px) {
+
+	section {
+		width: clamp(380px, 92vw, 900px);
+	}
+	.main {
+		flex-wrap: wrap;
+	}
+
+	#terminal, .infowrapper {
+		width: 100%;
+	}
+
+	.expandIcon {
+		display: none;
+	}
+
+}
+
+@media (width < 520px) {
+	.classroomText {
+		font-size: .8rem;
+		width: 19rem;
+	}
+	/*
+	.footer > div:first-child {
+		margin-left: 2rem;
+	}
+	.footer > div:last-child {
+		margin-right: 2rem;
+	}
+	*/	
+}
+
+.fade-in.htmx-added {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+	transition: opacity 400ms ease-in;
+}
+
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    to { opacity: 1.0; }
+}                                                                                                                                                                                                                                  
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    to { opacity: 1.0; }
+}
+
+.attention {
+  animation:fade 2000ms infinite;
+  -webkit-animation:fade 2000ms infinite;
+}
