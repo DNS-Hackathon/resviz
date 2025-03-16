@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import axios from 'axios';
+import qs from 'qs';
 import MermaidChart from '@/components/MermaidChart.vue'
 import ChartNavigator from '@/components/ChartNavigator.vue'
 import SearchBar from '@/components/SearchBar.vue'
@@ -19,7 +20,12 @@ const prevStep = () => {
 
 const handleSearch = async (query) => {
   try {
-    const response = await axios.post("http://nerdig.examples.nu/resviz", query);
+
+    const response = await axios.post(
+      'http://localhost:1999/resviz',
+      qs.stringify({ domain: query }),
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    );
 
     console.log(response.data);
     charts.value = [response.data];

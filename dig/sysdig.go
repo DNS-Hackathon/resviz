@@ -58,9 +58,8 @@ func ParseServer(input string) (*DNSAddress, error) {
 	return result, nil
 }
 
-var hitServers []string
-
 func OSdig(domain string) string {
+	var hitServers []string
 	script := "./dig/dig.sh"
 	jsonData, err := exec.Command("/bin/sh", script, domain).Output()
 	if err != nil {
@@ -102,6 +101,8 @@ func OSdig(domain string) string {
 	}
 
 	// return the mermaid string object
-	return fmt.Sprintf("%s", mermaidBuilder.String())
+	fmt.Println(mermaidBuilder.String())
+	return mermaidBuilder.String()
+
 	// return out
 }

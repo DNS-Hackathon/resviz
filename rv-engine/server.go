@@ -88,8 +88,12 @@ func Run() {
 
 	router.POST("/resviz", func(c *gin.Context) {
 		domain := c.PostForm("domain")
-		fmt.Printf("Got domain: %s", domain)
+		fmt.Println("START:   #######################################################")
+		fmt.Printf("Got domain: %s\n", domain)
 		outstr := dig.OSdig(domain)
+		fmt.Println("#######################################################")
+		fmt.Println(len(outstr))
+		fmt.Printf(" OSdig return: %s\n", outstr)
 		c.Data(http.StatusOK, ContentTypeHTML, []byte(outstr))
 
 	})
